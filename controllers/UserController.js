@@ -30,7 +30,7 @@ exports.incrementCoins = async (req, res) => {
         } else {
             await User.findOneAndUpdate(
                 { telegram_id }, // Filter
-                { $inc: { coins: coins } }, // Increment coins by the specified amount
+                {  coins: coins  }, // update coins by the specified amount
                 { new: true, upsert: true } // Return the updated document and create if it doesn't exist
             )
         }
