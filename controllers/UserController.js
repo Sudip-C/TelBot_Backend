@@ -20,7 +20,7 @@ exports.getUserCoins = async (req, res) => {
 exports.incrementCoins = async (req, res) => {
     try {
         const { telegram_id } = req.params;
-
+        const {coins}=req.body
         let user = await User.findOne({ telegram_id });
         
         // If user doesn't exist, create one
@@ -28,8 +28,11 @@ exports.incrementCoins = async (req, res) => {
             user = new User({ telegram_id, coins: 0 });
             await user.save();
         } else {
-            user.coins += 1;
-            await user.save();
+            await User.findOneAndUpdate(
+                { telegram_id }, // Filter
+                { $inc: { coins: coins } }, // Increment coins by the specified amount
+                { new: true, upsert: true } // Return the updated document and create if it doesn't exist
+            )
         }
 
         res.status(200).json({ coins: user.coins });
