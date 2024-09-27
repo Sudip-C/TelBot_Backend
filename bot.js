@@ -17,6 +17,6 @@ bot.onText(/\/start/, (msg) => {
     bot.sendMessage(chatId, 'Welcome to TapMe! Click the button to earn coins.');
 
     // Redirect to the frontend interface (provide your frontend URL here)
-    const frontendURL = `http://localhost:5173/?telegram_id=${telegram_id}`;
+    const frontendURL = `https://tapboty.netlify.app?telegram_id=${telegram_id}`;
     bot.sendMessage(chatId, `Click here to start: ${frontendURL}`);
 });
