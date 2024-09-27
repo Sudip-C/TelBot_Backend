@@ -34,6 +34,6 @@ exports.incrementCoins = async (req, res) => {
 
         res.status(200).json({ coins: user.coins });
     } catch (error) {
-        res.status(500).json({ message: 'Error incrementing coins', error });
+        res.status(500).json({ message: 'Error Incrementing coins', error });
     }
 };
